@@ -9,6 +9,6 @@ describe('pages/index', () => {
   })
 
   test('Vue instance', () => {
-    expect(wrapper.isVueInstance()).toBeTruthy()
+    expect(wrapper.isVueInstance()).toBeFalsy()
   })
 })
