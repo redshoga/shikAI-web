@@ -1,39 +1,10 @@
-# nuxt-gottani-template
+# shikAI-web
 
-> My stellar Nuxt.js project
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6630e3c8-d6bc-4cd5-83d5-494c22506c4e/deploy-status)](https://app.netlify.com/sites/nervous-borg-e43d54/deploys)
 
-## What is "gottani"
+## Template
 
-**ごった煮[gottani]**
-
-(n) various foods cooked together,hodgepodge,hotchpotch,mulligan stew
-
-## Features
-- Initial Options (`npx create-nuxt-app nuxt-gottani-template`)
-  - ```
-    ? Project name nuxt-gottani-template
-    ? Project description My perfect Nuxt.js project
-    ? Author name redshoga
-    ? Choose the package manager Yarn
-    ? Choose UI framework None
-    ? Choose custom server framework None (Recommended)
-    ? Choose Nuxt.js modules Axios
-    ? Choose linting tools Prettier
-    ? Choose test framework Jest
-    ? Choose rendering mode Single Page App
-    ```
-- [Normalize.css](https://necolas.github.io/normalize.css/)
-- Atomic Design Directory Structure
-  - `~/components/...`
-- SCSS Support
-  - `node-sass`, `sass-loader`
-- Nuxt Style Resources
-  - Share variables, mixins, functions across all style files (no @import needed)
-  - [`@nuxtjs/style-resources`](https://github.com/nuxt-community/style-resources-module)
-- VSCode Settings
-- VSCode Debugging
-  - https://qiita.com/keiichi-hikita/items/e4b788a1d39aa88b46e3
-- Prettier was deleted (This repo ONLY USE ESLint)
+https://github.com/redshoga/nuxt-gottani-template
 
 ## Recommend VSCode Extensions
 
