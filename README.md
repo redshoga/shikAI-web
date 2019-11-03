@@ -13,9 +13,6 @@ https://github.com/redshoga/nuxt-gottani-template
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
 
-## TODO
-- [ ] https://qiita.com/potato4d/items/5e267b828cfaba2ac960
-
 ## Build Setup
 
 ``` bash
