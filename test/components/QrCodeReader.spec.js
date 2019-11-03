@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils'
 import QrCodeReader from '~/components/QrCodeReader.vue'
 
-describe('pages/index', () => {
+describe('components/QrCodeReader', () => {
   let wrapper
   const mockInitMethod = jest.fn()
 
