@@ -1,11 +1,11 @@
-import { mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import Reader from '~/pages/reader.vue'
 
 describe('pages/index', () => {
   let wrapper
 
   beforeEach(() => {
-    wrapper = mount(Reader)
+    wrapper = shallowMount(Reader)
   })
 
   test('Vue instance', () => {
