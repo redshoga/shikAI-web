@@ -4,7 +4,8 @@ module.exports = {
     // https://jestjs.io/docs/ja/manual-mocks
     '^.+\\.(svg|png)$': '<rootDir>/test/__mocks__/fileMock.js',
     '^@/(.*)$': '<rootDir>/$1',
-    '^~/(.*)$': '<rootDir>/$1'
+    '^~/(.*)$': '<rootDir>/$1',
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy'
   },
   moduleFileExtensions: ['js', 'vue', 'json'],
   transform: {
