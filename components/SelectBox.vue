@@ -1,6 +1,9 @@
 <template>
-  <fieldset>
-    <select :name="name" @change="updateValue">
+  <fieldset class="select-box">
+    <div v-if="title" class="slot-container">
+      {{ title }}
+    </div>
+    <select :name="name" class="select" @change="updateValue">
       <template v-for="(option, index) in options">
         <option :key="index" :value="option.value">
           {{ option.label }}
@@ -27,9 +30,15 @@ export default {
       type: String,
       require: true,
       default: 'select-box'
+    },
+    title: {
+      type: String,
+      require: false,
+      default: null
     }
   },
   mounted() {
+    if (this.options.length === 0) return
     this.$emit('input', this.options[0].value)
   },
   methods: {
@@ -39,3 +48,26 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.select-box {
+  border: none;
+  padding: 0; // reset
+
+  $base: &;
+  & + #{$base} {
+    margin-top: 16px;
+  }
+}
+
+.slot-container {
+  color: $color-black !important;
+  @include text(small, bold);
+  margin-bottom: 4px;
+}
+
+.select {
+  width: 100%;
+  border-radius: 16px;
+}
+</style>
