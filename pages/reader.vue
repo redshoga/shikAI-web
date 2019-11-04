@@ -1,22 +1,28 @@
 <template>
-  <div>
-    <QrCodeReader @detect="detectQr" @error="errorHandler" />
-    <RouteGuidance :routes="routes" />
-    <div>
-      <h1>selectedLocation</h1>
-      {{ selectedLocation }}
+  <div class="reader-page">
+    <div class="title">
+      shikAI
     </div>
-    <div>
-      <h1>destinationsArray</h1>
-      {{ destinationsArray }}
-    </div>
-    <div>
-      <h1>routes</h1>
-      {{ routes }}
-    </div>
-    <div>
-      <h1>selectedDestination</h1>
-      {{ selectedDestination }}
+
+    <div class="main">
+      <div>
+        <div>selectedLocation</div>
+        {{ selectedLocation }}
+      </div>
+      <div>
+        <div>destinationsArray</div>
+        {{ destinationsArray }}
+      </div>
+      <div>
+        <div>routes</div>
+        {{ routes }}
+      </div>
+      <div>
+        <div>selectedDestination</div>
+        {{ selectedDestination }}
+      </div>
+      <QrCodeReader @detect="detectQr" @error="errorHandler" />
+      <RouteGuidance :routes="routes" />
     </div>
   </div>
 </template>
@@ -61,3 +67,20 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.reader-page {
+}
+
+.title {
+  height: 50px;
+  line-height: 50px;
+  color: $color-white;
+  @include text(normal, bold);
+}
+
+.main {
+  border-radius: 50px 50px 0 0;
+  background-color: $color-white;
+}
+</style>

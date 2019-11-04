@@ -1,6 +1,29 @@
 // variables
 $container-width: 600px;
 
+// text styles
+$text-sizes: (
+  huge: 36px,
+  large: 24px,
+  normal: 18px,
+  small: 14px,
+);
+$text-weights: (
+  bold: 900,
+  regular: 400
+);
+@mixin text($size, $thickness) {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: map-get($text-sizes, $size);
+  font-weight: map-get($text-weights, $thickness);
+}
+
+// colors
+$color-main-1: #F26F03;
+$color-main-2: #FF9201;
+$color-black: #aaa;
+$color-white: white;
+
 // mixin
 $breakpoints: (
   "sm": "screen and (min-width: 400px)",
