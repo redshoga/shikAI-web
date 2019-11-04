@@ -23,7 +23,7 @@ export const getNodes = (locationId) => {
 }
 
 export const getRoutes = (locationId, startNode, destinationNode, qrDirection = 'Front') => {
-  return axiosClient.get('/nodes', {
+  return axiosClient.get('/route', {
     params: {
       locationId: locationId,
       start: startNode,
