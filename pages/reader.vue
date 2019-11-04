@@ -66,8 +66,8 @@ export default {
   },
   created() {
     this.setLocationId('pt-main-office')
-    this.setDestinationNodeId('DAI-0001-0020')
-    this.setRoutes('DAI-0001-0000')
+    // this.setDestinationNodeId('DAI-0001-0020')
+    // this.setRoutes('DAI-0001-0000')
   },
   methods: {
     ...mapActions({
@@ -76,8 +76,10 @@ export default {
       setLocationId: 'setLocationId'
     }),
     detectQr(qrInfo) {
-      console.log('detectQr', qrInfo)
-      // this.setDestinationNodeId('DAI-0001-0020')
+      if (qrInfo.data !== '') {
+        const currentNodeId = qrInfo.data
+        this.setRoutes(currentNodeId)
+      }
     },
     cameraErrorHandler(err) {
       console.error(err)
