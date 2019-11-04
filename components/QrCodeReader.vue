@@ -3,6 +3,9 @@
     <video ref="video" class="video" width="600" height="400">
       現在お使いのブラウザではご利用いただけません。
     </video>
+    <div v-show="overlayText" class="overlay-text">
+      {{ overlayText }}
+    </div>
 
     <canvas ref="canvas" class="canvas" width="600" height="400" />
   </div>
@@ -12,6 +15,13 @@
 import jsQR from 'jsqr'
 
 export default {
+  props: {
+    overlayText: {
+      type: String,
+      required: false,
+      default: null
+    }
+  },
   data() {
     return {
       canvasCtx: null,
@@ -80,5 +90,20 @@ export default {
     width: 100%;
     height: 100%;
   }
+}
+
+.overlay-text {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-weight: map-get($text-weights, bold);
+  color: white;
+  // 縁どり
+  text-shadow:
+    1px 1px 0 black, -1px -1px 0 black,
+    -1px 1px 0 black, 1px -1px 0 black,
+    0px 1px 0 black,  0-1px 0 black,
+    -1px 0 0 black, 1px 0 0 black;
+
 }
 </style>

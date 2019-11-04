@@ -5,24 +5,39 @@
     </div>
 
     <div class="main">
-      <div>
-        <div>selectedLocation</div>
-        {{ selectedLocation }}
-      </div>
-      <div>
-        <div>destinationsArray</div>
-        {{ destinationsArray }}
-      </div>
-      <div>
-        <div>routes</div>
-        {{ routes }}
-      </div>
-      <div>
-        <div>selectedDestination</div>
-        {{ selectedDestination }}
-      </div>
-      <QrCodeReader @detect="detectQr" @error="errorHandler" />
-      <RouteGuidance :routes="routes" />
+      <!-- {{ selectedLocationId }}
+      {{ locationsArray }} -->
+      <SelectBox
+        :v-value="selectedLocationId"
+        :options="locationsArray"
+        name="select-location"
+        title="場所を選択してください"
+        @input="setLocationId"
+      />
+
+      <!-- {{ selectedDestinationNodeId }}
+      {{ destinationsArray }} -->
+      <SelectBox
+        :v-value="selectedDestinationNodeId"
+        :options="destinationsArray"
+        name="select-destination"
+        title="目的地を選択してください"
+        @input="setDestinationNodeId"
+      />
+
+      <QrCodeReader
+        class="qr-code-reader"
+        overlay-text="点字ブロックのQRコードを読み込んでください"
+        @detect="detectQr"
+        @error="errorHandler"
+      />
+
+      <!-- {{ routes }} -->
+      <RouteGuidance
+        no-data-text="目的地を設定してQRコードを読み込むとガイドが表示されます"
+        class="route-guidance"
+        :routes="routes"
+      />
     </div>
   </div>
 </template>
@@ -31,31 +46,35 @@
 import { mapGetters, mapActions } from 'vuex'
 import QrCodeReader from '~/components/QrCodeReader'
 import RouteGuidance from '~/components/RouteGuidance'
+import SelectBox from '~/components/SelectBox'
 
 export default {
   components: {
     QrCodeReader,
-    RouteGuidance
+    RouteGuidance,
+    SelectBox
   },
   computed: {
     ...mapGetters({
       destinationsArray: 'destinationsArray',
-      selectedLocation: 'selectedLocation',
+      selectedLocationId: 'selectedLocationId',
       routes: 'routes',
-      selectedDestination: 'selectedDestination'
+      locationsArray: 'locationsArray',
+      selectedDestinationNodeId: 'selectedDestinationNodeId'
     })
   },
   created() {
-    this.setLocation('pt-main-office')
+    this.setLocationId('pt-main-office')
     this.setDestinationNodeId('DAI-0001-0020')
     this.setRoutes('DAI-0001-0000')
   },
   methods: {
     ...mapActions({
-      setLocation: 'setLocation',
       setRoutes: 'setRoutes',
-      setDestinationNodeId: 'setDestinationNodeId'
+      setDestinationNodeId: 'setDestinationNodeId',
+      setLocationId: 'setLocationId'
     }),
+    log: v => console.log(v),
     detectQr(qrInfo) {
       console.log('detectQr')
       console.log(qrInfo)
@@ -69,8 +88,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.reader-page {
-}
+// .reader-page { }
 
 .title {
   height: 50px;
@@ -80,7 +98,12 @@ export default {
 }
 
 .main {
-  border-radius: 50px 50px 0 0;
+  border-radius: 16px;
   background-color: $color-white;
+  padding: 16px;
+}
+
+.qr-code-reader, .route-guidance {
+  margin-top: 16px;
 }
 </style>
