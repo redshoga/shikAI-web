@@ -4,6 +4,7 @@ export const strict = false
 
 export const state = () => ({
   selectedLocationId: null,
+  // { "locationId": "name", ... }
   locations: {
     'pt-main-office': 'オフィス',
     'TokyoMetro.Yurakucho.ShinKiba': '新木場駅',
@@ -19,32 +20,31 @@ export const state = () => ({
 
 export const getters = {
   // { name: "name", id: "locationId" }
-  selectedLocation: (state) => {
-    return {
-      name: state.locations[state.selectedLocationId],
-      id: state.selectedLocationId
-    }
-  },
-  // [ {name: "name", nodeId: "nodeId"}, ... ]
+  selectedLocationId: state => state.selectedLocationId,
+  // [ {label: "name", value: "nodeId"}, ... ]
   destinationsArray: (state) => {
     return state.destinations === null ? []
       : Object.keys(state.destinations).map((nodeId) => {
         return {
-          name: state.destinations[nodeId],
-          nodeId: nodeId
+          label: state.destinations[nodeId],
+          value: nodeId
         }
       })
   },
-  // {name: "name", nodeId: "nodeId"}
-  selectedDestination: (state) => {
-    if (state.selectedDestinationNodeId === null || state.destinations === null) return null
-    return {
-      name: state.destinations[state.selectedDestinationNodeId],
-      nodeId: state.selectedDestinationNodeId
-    }
-  },
+  // "nodeId"
+  selectedDestinationNodeId: state => state.selectedDestinationNodeId,
   // [ {"id":"DAI-0001-0000","distance":7.0,"direction":"Front"}, ... ]
-  routes: state => state.routes
+  routes: state => state.routes,
+  // [ { "value": "locationId", "label": "name"}, ... ]
+  locationsArray: (state) => {
+    return state.locations === null ? []
+      : Object.keys(state.locations).map((locationId) => {
+        return {
+          label: state.locations[locationId],
+          value: locationId
+        }
+      })
+  }
 }
 
 export const mutations = {
@@ -70,7 +70,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async setLocation({ commit, state }, locationId) {
+  async setLocationId({ commit, state }, locationId) {
     commit('init')
     commit('setLocationId', locationId)
 
@@ -81,8 +81,8 @@ export const actions = {
       console.error(err)
     }
   },
-  setDestinationNodeId({ commit }, nodeId) {
-    commit('setDestinationNodeId', nodeId)
+  setDestinationNodeId({ commit }, val) {
+    commit('setDestinationNodeId', val)
   },
   async setRoutes({ commit, state }, currentNodeId) {
     if (state.selectedDestinationNodeId === null) return
