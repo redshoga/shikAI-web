@@ -29,7 +29,7 @@
         class="qr-code-reader"
         overlay-text="点字ブロックのQRコードを読み込んでください"
         @detect="detectQr"
-        @error="errorHandler"
+        @error="cameraErrorHandler"
       />
 
       <!-- {{ routes }} -->
@@ -47,6 +47,7 @@ import { mapGetters, mapActions } from 'vuex'
 import QrCodeReader from '~/components/QrCodeReader'
 import RouteGuidance from '~/components/RouteGuidance'
 import SelectBox from '~/components/SelectBox'
+import toastr from '~/plugins/toastr'
 
 export default {
   components: {
@@ -74,14 +75,13 @@ export default {
       setDestinationNodeId: 'setDestinationNodeId',
       setLocationId: 'setLocationId'
     }),
-    log: v => console.log(v),
     detectQr(qrInfo) {
-      console.log('detectQr')
-      console.log(qrInfo)
+      console.log('detectQr', qrInfo)
       // this.setDestinationNodeId('DAI-0001-0020')
     },
-    errorHandler(err) {
+    cameraErrorHandler(err) {
       console.error(err)
+      toastr.error('カメラの設定に失敗しました.カメラの使用を許可してページを再読み込みしてください.')
     }
   }
 }
